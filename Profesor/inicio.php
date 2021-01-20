@@ -1,4 +1,4 @@
-<?php require "./Util/verifyLogged.php"; ?>
+<?php require "./Util/verifyTeacher.php"; ?>
 <!DOCTYPE html>
 
 <html lang="es">

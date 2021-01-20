@@ -1,11 +1,11 @@
-<?php require "./Util/verifyLogged.php"; ?>
+<?php require "./Util/verifyAdmin.php"; ?>
 <!DOCTYPE html>
 
 <html lang="es">
     <head>
         <base href="/">
         <meta charset="UTF-8">
-        <title>Inicio de sesión</title>
+        <title>Admin</title>
         <link rel="stylesheet" href="css/bulma.min.css">
     </head>
     <body>
