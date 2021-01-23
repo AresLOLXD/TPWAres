@@ -16,9 +16,10 @@ if(isset($_SESSION["usuario"]))
             die();
             break;
         default:
-            if(!session_destroy())
+            if(session_unset())
             {
-                session_unset();
+                error_log("Ay drake, se murio esto");
+                die();
             }
             header('Location: /login.php');
             die();

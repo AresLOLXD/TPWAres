@@ -1,6 +1,6 @@
 <?php
 function getConnection()
 {
-    return new mysqli("localhost","root","m3rl1n","TWPAres");
+    return new mysqli("104.238.138.234","Ares","sNod6BvuzwwAVtHZ","TPW");
 }
 
