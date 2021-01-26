@@ -1,9 +1,9 @@
-<?php require "./Util/verifyLogged.php"; ?>
+<?php require dirname(dirname(__FILE__)) . "/Util/verifyLogged.php";?>
 <!DOCTYPE html>
 
 <html lang="es">
     <head>
-        <base href="/">
+        <base href="/TPWAres/">
         <meta charset="UTF-8">
         <title>Inicio de sesión</title>
         <link rel="stylesheet" href="css/bulma.min.css">
