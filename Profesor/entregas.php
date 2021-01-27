@@ -98,6 +98,7 @@
       {
         if(data.Estado=="ok")
         {
+
           let salida="";
           data.Registros.forEach(val=>
           {
@@ -110,8 +111,9 @@
                         `<button type="button" class="btn btn-primary" onclick="seeDelivery('${val.idUsuario}')">Calificar/Cambiar calificación</button>`+
                       `</td>`+
                     `</tr>`;
-            getterID("titulo").innerHTML=val.titulo
+
           })
+          getterID("titulo").innerHTML=data.titulo
           getterID("tbody").innerHTML=salida;
         }else{
           alert(data.Descripcion);
