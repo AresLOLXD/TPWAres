@@ -36,38 +36,34 @@
   <!-- necesario el id de la actividad -->
   <!-- ******************************* -->
 
+  <!-- Titulo de la tarea elegida -->
   <div class="container-md">
     <br>
-    <h1 class="display-6">Tareas pendientes:</h1>
+    <h1 class="display-3">Tarea: ""</h1>
   </div>
 
-  <!-- Listado de tareas pendientes -->
+  <!-- Descripción de la tarea elegida -->
   <div class="container shadow p-3 mb-5 bg-white rounded">
     <br>
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Tarea</th>
-          <th scope="col">Fecha de entrega</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <!-- Llenar datos de actividad y meter en loop -->
-          <!-- select * from actividad where             -->
-          <td></td>
-          <td></td>
-          <!-- Llenar input con el ID de la tarea -->
-          <td>
-            <form method="get" action="Alumno/Tarea.php">
-              <input type="hidden" value="">
-              <input type="submit" class="btn btn-primary" value="Ver tarea">
-            </form>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <p class="card-text">Páginas: </p>
+    <br>
+    <p class="card-text">Descripción: </p>
+    <br>
+  </div>
+
+  <div class="container shadow-lg p-3 mb-5 bg-white rounded ratio ratio-16x9">
+    <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
+  </div>
+
+  <div class="container shadow p-3 mb-5 bg-white rounded">
+    <form class="row g-3">
+      <div class="mb-3">
+        <label for="formFileMultiple" class="form-label">Selecciona los archivos a subir:</label>
+        <input class="form-control" type="file" id="formFileMultiple" multiple>
+        <div id="fileMultipleHelp" class="form-text">Puedes seleccionar varios archivos a la vez.</div>
+      </div>
+      <input type="submit" class="btn btn-primary" value="Entregar">
+    </form>
   </div>
 
 </body>
