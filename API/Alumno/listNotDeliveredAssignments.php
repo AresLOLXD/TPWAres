@@ -14,30 +14,13 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 0) {
         $texto = $con->real_escape_string($_POST["texto"]);
         $idUsuario = $con->real_escape_string($_SESSION["usuario"]["idUsuario"]);
 
-        $pagina = $_POST["pagina"] - 1;
-        $limit = 10;
-        $skip = $limit * $pagina;
-        $query = "SELECT idActividad,titulo FROM actividad WHERE idActividad NOT IN (SELECT idActividad FROM entrega WHERE idUsuario='$idUsuario') ORDER BY idActividad ASC LIMIT $skip,$limit";
+        $query = "SELECT idActividad,titulo FROM actividad WHERE idActividad NOT IN (SELECT idActividad FROM entrega WHERE idUsuario='$idUsuario') ORDER BY idActividad ASC ";
         if ($result = $con->query($query)) {
             $sal["Registros"] = array();
-            if ($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
                 $sal["Estado"] = "ok";
                 $sal["Registros"][] = $row;
                 unset($sal["Descripcion"]);
-            } else {
-                $sal["Descripcion"] = "No se encontraron las tareas";
-            }
-            $query = "SELECT COUNT(idActividad) AS CANT FROM actividad  WHERE idActividad NOT IN (SELECT idActividad FROM entrega WHERE idUsuario='$idUsuario') ";
-            if ($result2 = $con->query($query)) {
-                if ($row = $result2->fetch_assoc()) {
-                    $sal["Cantidad"] = $row["CANT"];
-                    unset($sal["Descripcion"]);
-                } else {
-                    $sal["Descripcion"] = "No se encontraron las tareas";
-                }
-                $result2->free();
-            } else {
-                $sal["Descripcion"] = "Error de la base.\n" . $con->error;
             }
 
             $result->free();

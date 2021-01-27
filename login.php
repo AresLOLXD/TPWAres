@@ -8,8 +8,6 @@
         <meta charset="UTF-8">
         <title>Inicio de sesión</title>
 
-        <link rel="stylesheet" href="css/bulma.min.css"> <!-- CSS de Bulma.io-->
-        <link rel="stylesheet" href="css/app.css"><!-- Css escrito propio-->
     </head>
     <body>
     <!--
@@ -65,9 +63,8 @@
 
 
 
-        <script src="js/fontawesome.js"></script>
-        <script src="js/jquery-3.5.1.min.js"></script>
         <script src="js/generic.js"></script>
+        <script src="js/jquery.min.js"></script>
         <script>
 
             initialize(()=>
@@ -101,7 +98,7 @@
                             }
                         }else
                         {
-
+                            alert(data.Descripcion)
                         }
                     },
                     (err)=>
@@ -110,9 +107,6 @@
                     }
                 );
             }
-
-
-
         </script>
     </body>
 </html>

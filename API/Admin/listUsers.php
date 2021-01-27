@@ -12,30 +12,14 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 2) {
         $sal["Descripcion"] = "No se pudo conectar a la base de datos, contacte al administrador";
     } else {
         $texto = $con->real_escape_string($_POST["texto"]);
-        $pagina = $_POST["pagina"] - 1;
-        $limit = 10;
-        $skip = $limit * $pagina;
-        $query = "SELECT idUsuario,nombre,username FROM usuario WHERE nombre LIKE '%$text%',username LIKE '%$text%',apPat LIKE '%$text%',apMat LIKE '%$text%' ORDER BY idUsuario ASC LIMIT $skip,$limit";
+
+        $query = "SELECT idUsuario,nombre,username,apPat,apMat,tipo FROM usuario WHERE nombre LIKE '%$texto%' OR username LIKE '%$texto%' OR apPat LIKE '%$texto%' OR apMat LIKE '%$texto%' ORDER BY idUsuario ASC ";
         if ($result = $con->query($query)) {
             $sal["Registros"] = array();
-            if ($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
                 $sal["Estado"] = "ok";
                 $sal["Registros"][] = $row;
                 unset($sal["Descripcion"]);
-            } else {
-                $sal["Descripcion"] = "No se encontro el usuario";
-            }
-            $query = "SELECT COUNT(idUsuario) FROM usuario WHERE nombre LIKE '%$text%',username LIKE '%$text%',apPat LIKE '%$text%',apMat LIKE '%$text%' ";
-            if ($result2 = $con->query($query)) {
-                if ($row = $result2->fetch_assoc()) {
-                    $sal["Cantidad"] = $row["CANT"];
-                    unset($sal["Descripcion"]);
-                } else {
-                    $sal["Descripcion"] = "No se encontraron las tareas";
-                }
-                $result2->free();
-            } else {
-                $sal["Descripcion"] = "Error de la base.\n" . $con->error;
             }
 
             $result->free();

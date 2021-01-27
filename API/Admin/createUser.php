@@ -18,7 +18,7 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 2) {
         $nombre = $con->real_escape_string($_POST["nombre"]);
         $tipo = $con->real_escape_string($_POST["tipo"]);
 
-        $query = "INSERT INTO usuario(nombre,apPat,apMat,username,password,tipo) WHERE VALUES ('$nombre','$apPat','$apMat','$username','$password','$tipo')";
+        $query = "INSERT INTO usuario(nombre,apPat,apMat,username,password,tipo)  VALUES ('$nombre','$apPat','$apMat','$username','$password','$tipo')";
         if ($con->query($query) === true) {
             $sal["Estado"] = "ok";
             unset($sal["Descripcion"]);
