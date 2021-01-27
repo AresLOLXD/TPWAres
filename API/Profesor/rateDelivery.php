@@ -16,7 +16,6 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 1) {
         $idUsuario = $con->real_escape_string($_POST["idUsuario"]);
 
         $query = "UPDATE entrega SET calificacion='$calificacion' WHERE idUsuario='$idUsuario' AND idActividad='$idActividad'";
-        error_log($query);
         if ($con->query($query) === true) {
             $sal["Estado"] = "ok";
             unset($sal["Descripcion"]);
