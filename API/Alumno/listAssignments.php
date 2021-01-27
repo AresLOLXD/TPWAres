@@ -16,10 +16,10 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 0) {
         $query = "SELECT idActividad,titulo FROM actividad WHERE titulo LIKE '%$texto%' ORDER BY idActividad ASC ";
         if ($result = $con->query($query)) {
             $sal["Registros"] = array();
+            $sal["Estado"] = "ok";
+
             while ($row = $result->fetch_assoc()) {
-                $sal["Estado"] = "ok";
                 $sal["Registros"][] = $row;
-                unset($sal["Descripcion"]);
             }
 
             $result->free();
