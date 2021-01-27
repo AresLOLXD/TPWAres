@@ -53,6 +53,8 @@
   </div>
 
   <div class="container shadow p-3 mb-5 bg-white rounded">
+    <!-- Poner debajo el nombre del alumno que la antregó -->
+    <p>Trabajo de </p>
     <form method="get" action="" class="input-group mb-3">
       <input type="number" class="form-control" placeholder="Calificación de este trabajo" >
     <button class="btn btn-outline-secondary" type="button" id="asignaCalificacion">Guardar calificación</button>
