@@ -36,7 +36,7 @@
   <!--   necesario el id del alumno    -->
   <!-- ******************************* -->
 
-  <div class="container-md">
+  <div class="container-md text-center">
     <br>
     <h1 class="display-6">Tareas pendientes:</h1>
   </div>
@@ -71,7 +71,7 @@
   </div>
 
 
-  <div class="container-md">
+  <div class="container-md text-center">
     <br>
     <h1 class="display-6">Tareas entregadas:</h1>
   </div>
