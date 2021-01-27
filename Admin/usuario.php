@@ -11,7 +11,8 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Barra de navegacion de admin -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Proyecto de TPW - - - Administrador</a>
       <button type="button" class="btn btn-secondary">Cerrar sesión</button>
@@ -32,6 +33,7 @@
     </div>
   </nav>
   <br>
+  
   <div class="container shadow p-3 mb-5 bg-white rounded" >
     <!-- Registrar o editar usuario -->
     <br>

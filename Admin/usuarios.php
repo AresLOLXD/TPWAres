@@ -11,7 +11,8 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Barra de navegacion de admin -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Proyecto de TPW - - - Administrador</a>
       <button type="button" class="btn btn-secondary">Cerrar sesión</button>
@@ -31,11 +32,12 @@
       </div>
     </div>
   </nav>
+  <br>
 
   <div class="container-md">
     <!-- Busqueda de usuarios -->
     <br>
-    <form class="d-flex shadow p-3 mb-5 bg-white rounded" >
+    <form class="d-flex shadow p-3 mb-5 bg-white rounded" action="">
       <input class="form-control me-2" type="search" placeholder="Nombre de usuario" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Buscar usuario</button>
     </form>
@@ -57,7 +59,8 @@
       </thead>
       <tbody>
         <tr>
-          <!-- Llenar datos de usuario -->
+          <!-- Llenar datos de usuario y meter en loop -->
+          <!-- select * from usuario, si se busca usar where -->
           <td></td>
           <td></td>
           <td></td>
@@ -66,7 +69,7 @@
           <td>
           <!-- Llenar input con el ID de usuario -->
           <form>
-            <input type="hidden" value="">
+            <input type="hidden" value="" action="">
             <input type="submit" class="btn btn-primary" value="Editar" >
           </form>
           </td>
