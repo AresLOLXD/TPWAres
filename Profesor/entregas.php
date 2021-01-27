@@ -44,7 +44,7 @@
   <!-- Poner el título de la tarea -->
   <div class="container-md">
     <br>
-    <h1 class="display-4">Lista de entregas de ""</h1>
+    <h1 class="display-4">Lista de entregas de <span id='titulo'></span></h1>
   </div>
 
   <!-- Listado de entregas -->
@@ -60,7 +60,7 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tbody">
         <tr>
           <!-- Llenar datos de entrega y meter en loop   -->
           <!-- select * from actividad where idActividad -->
@@ -70,17 +70,60 @@
           <td></td>
           <!-- Llenar input con el ID de entrega -->
           <td>
-            <form method="get" action="Profesor/Entrega.php">
-              <input type="hidden" value="" >
-              <input type="submit" class="btn btn-primary" value="Calificar/Cambiar calificación" >
-            </form>
+              <button type="button" class="btn btn-primary" >Calificar/Cambiar calificación</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 
+  <script src="js/generic.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script>
 
+    let idActividad=0;
+    initialize(()=>
+    {
+      load();
+      idActividad=findGetParameter("idActividad");
+    });
+    function seeDelivery(usuario)
+    {
+      window.location.assign("Profesor/entrega.php?idActividad="+id+"&idUsuario="+usuario)
+    }
+    function load()
+    {
+      const params={idActividad};
+      makePost("API/Profesor/listDeliveriesFromAssignment.php",params,(data)=>
+      {
+        if(data.Estado=="ok")
+        {
+          let salida="";
+          data.Registros.forEach(val=>
+          {
+            salida+=`<tr>`+
+                      `<td>${val.username}</td>`+
+                      `<td>${val.fechaEntrega}</td>`+
+                      `<td><a download href="API/Profesor/showFileUploaded.php?idArchivo=${val.idArchivo}">Descargar</a></td>`+
+                      `<td>${val.calificacion?val.calificacion:"Sin calificar"}</td>`+
+                      `<td>`+
+                        `<button type="button" class="btn btn-primary" onclick='seeDelivery('${val.idUsuario}')'>Calificar/Cambiar calificación</button>`+
+                      `</td>`+
+                    `</tr>`;
+            getterID("titulo").innerHTML=val.titulo
+          })
+          getterID("tbody").innerHTML=salida;
+        }else{
+          alert(data.Descripcion);
+        }
+      },
+      err=>
+      {
+        console.error(err);
+      })
+      return false;
+    }
+  </script>
 </body>
 
 </html>
