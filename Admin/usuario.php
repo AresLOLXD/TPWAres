@@ -70,12 +70,13 @@
           </div>
           <div class="col-6">
             <label for="txtPassword" class="form-label">Contraseña:</label>
-            <input type="password" class="form-control" placeholder="Su contraseña (Si no desea cambiarla solo deje en blanco)" id="txtPassword">
+            <input type="password" class="form-control" id="txtPassword">
+            <div id="fileMultipleHelp" class="form-text">Su contraseña (Si no desea cambiarla solo deje en blanco)</div>
           </div>
         </div>
       </div>
       <div class="mb-3"></div>
-      <button type="submit" class="btn btn-primary">Registrar</button>
+      <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 
   <script src="js/jquery.min.js"></script>
