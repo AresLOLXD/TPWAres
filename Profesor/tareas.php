@@ -61,8 +61,8 @@
             <!-- Llenar input con el ID de la tarea -->
             <form action="">
               <input type="hidden" value="">
-              <input id="editar" class="btn btn-primary" value="Editar">
-              <input id="entregas" class="btn btn-secondary" value="Ver entregas">
+              <button id="editar" class="btn btn-primary">Editar</button>
+              <button id="entregas" class="btn btn-secondary">Ver entregas</button>
             </form>
         </div>
       </div>

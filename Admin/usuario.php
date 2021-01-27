@@ -44,15 +44,15 @@
         <div class="row g-2">
           <div class="col-6">
             <label for="txtNombre" class="form-label">Nombre:</label>
-            <input type="text" class="form-control" id="txtNombre" autofocus>
+            <input type="text" class="form-control" placeholder="Nombre" id="txtNombre" autofocus>
           </div>
           <div class="col-6">
             <label for="txtApPat" class="form-label">Apellido Paterno:</label>
-            <input type="text" class="form-control" id="txtApPat">
+            <input type="text" class="form-control" placeholder="Apellido paterno" id="txtApPat">
           </div>
           <div class="col-6">
             <label for="txtApMat" class="form-label">Apellido Materno:</label>
-            <input type="text" class="form-control" id="txtApMat">
+            <input type="text" class="form-control" placeholder="Apellido materno" id="txtApMat">
           </div>
           <div class="col-6">
             <label for="txtTipo" class="form-label">Nivel de usuario:</label>
@@ -65,11 +65,11 @@
           </div>
           <div class="col-6">
             <label for="txtUsuario" class="form-label">Usuario:</label>
-            <input type="text" class="form-control" id="txtApPat">
+            <input type="text" class="form-control" placeholder="Nombre de usuario" id="txtApPat">
           </div>
           <div class="col-6">
             <label for="txtPassword" class="form-label">Contraseña:</label>
-            <input type="password" class="form-control" id="txtApPat">
+            <input type="password" class="form-control" placeholder="Su contraseña" id="txtApPat">
           </div>
         </div>
       </div>
