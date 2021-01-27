@@ -5,23 +5,23 @@ $sal = array();
 $sal["Estado"] = "error";
 $sal["Descripcion"] = "Error desconocido";
 $con = getConnection();
-if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 1) {
+if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 0) {
     $sal["Descripcion"] = "Usuario no valido";
 } else {
     if ($con->connect_errno) {
         $sal["Descripcion"] = "No se pudo conectar a la base de datos, contacte al administrador";
     } else {
         $idActividad = $con->real_escape_string($_POST["idActividad"]);
-        $query = "SELECT E.calificacion,E.fechaEntrega AS fechaEntrega,A.titulo, A.fechaEntrega AS fechaLimite,U.idUsuario,U.nombre,U.apPat,U.apMat,U.username  FROM entrega AS E INNER JOIN actividad AS A ON A.idActividad=E.idActividad INNER JOIN usuario AS U ON U.idUsuario=E.idUsuario  WHERE E.idActividad='$idActividad' ASC ";
+
+        $query = "SELECT * FROM actividad WHERE idActividad='$idActividad' LIMIT 1";
         if ($result = $con->query($query)) {
-            $sal["Registros"] = array();
-            $sal["Estado"] = "ok";
-unset($sal["Descripcion"]);
-
-            while ($row = $result->fetch_assoc()) {
-                $sal["Registros"][] = $row;
+            if ($row = $result->fetch_assoc()) {
+                $sal["Estado"] = "ok";
+                $sal["Registro"] = $row;
+                unset($sal["Descripcion"]);
+            } else {
+                $sal["Descripcion"] = "No se encontro el usuario";
             }
-
             $result->free();
         } else {
             $sal["Descripcion"] = "Error de la base.\n" . $con->error;

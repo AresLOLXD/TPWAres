@@ -1,3 +1,4 @@
+<?php require dirname(dirname(__FILE__)) . "/Util/verifyAdmin.php";?>
 <!DOCTYPE html>
 
 <html lang="es">

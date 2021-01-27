@@ -1,3 +1,4 @@
+<?php require dirname(dirname(__FILE__)) . "/Util/verifyTeacher.php";?>
 <!DOCTYPE html>
 
 <html lang="es">
@@ -38,13 +39,14 @@
   <div class="container-md">
     <br>
     <form class="d-flex shadow p-3 mb-5 bg-white rounded" id="searchForm">
-      <input class="form-control me-2" type="search" placeholder="Nombre de la tarea" aria-label="Search">
+      <input id="search" class="form-control me-2" type="search" placeholder="Nombre de la tarea" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Buscar tarea</button>
     </form>
   </div>
 
   <!-- Listado de tareas -->
-  <div class="row row-cols-1 row-cols-md-3 g-4 shadow-none p-3 mb-5 bg-light rounded">
+  <button class="btn btn-secondary" type="button"  onclick="editAssignment(0)">Crear nueva tarea</button>
+  <div class="row row-cols-1 row-cols-md-3 g-4 shadow-none p-3 mb-5 bg-light rounded" id="tbody">
     <!-- Meter este div en loop -->
     <div class="col">
       <div class="card">
@@ -59,9 +61,9 @@
           <!-- Fecha de entrega de la tarea -->
           <p class="card-text">Fecha de entrega: </p>
 
-          <input class="btn btn-primary" type="submit" value="Editar">
+          <button class="btn btn-primary" type="button" >Editar</button>
 
-          <input class="btn btn-secondary" type="submit" value="Ver entregas">
+          <button class="btn btn-secondary" type="button" >Ver entregas</button>
 
         </div>
       </div>
@@ -80,51 +82,37 @@
       };
     });
 
-    function deleteUser(id)
+    function seeDeliveries(id)
     {
-      const params={idUsuario:id};
-      if(confirm("¿Esta seguro de borrar el usuario?\nEsta accion no se puede deshacer"))
-      {
-        makePost("API/Admin/deleteUser.php",params,(data)=>
-        {
-          if(data.Estado=="ok")
-          {
-            search();
-          }else{
-            alert(data.Descripcion);
-          }
-        },
-        err=>
-        {
-          console.error(err);
-        })
-      }
+      window.location.assign("Profesor/entregas.php?idActividad="+id)
     }
-    function editUser(id)
+    function editAssignment(id)
     {
-      window.location.assign("Admin/usuario.php?idUsuario="+id)
+      window.location.assign("Profesor/tarea.php?idActividad="+id)
     }
     function search()
     {
       const params={texto:getterID("search").value};
-      makePost("API/Admin/listUsers.php",params,(data)=>
+      makePost("API/Profesor/listAssignments.php",params,(data)=>
       {
         if(data.Estado=="ok")
         {
           let salida="";
           data.Registros.forEach(val=>
           {
-            salida+=`<tr>`+
-                  `  <td>${val.username}</td>`+
-                  `  <td>${val.nombre}</td>`+
-                  `  <td>${val.apPat}</td>`+
-                  `  <td>${val.apMat}</td>`+
-                  `  <td>${(val.tipo==0?"Alumno":(val.tipo==1?"Profesor":"Admin"))}</td>`+
-                  `  <td>`+
-                  `    <button type='button' class='btn btn-primary' onclick="editUser('${val.idUsuario}')" >Editar</button>`+
-                  `    <button type='button' class='btn btn-primary' onclick="deleteUser('${val.idUsuario}')" >Borrar</button>`+
-                  `  </td>`+
-                  `</tr>`;
+            salida+=`<div class="col">`+
+                      `<div class="card">`+
+                        `<img src="img/libros.png" class="card-img-top" alt="libros">`+
+                        `<div class="card-body">`+
+                          `<h5 class="card-text">ID: ${val.idActividad}</h5>`+
+                          `<h4 class="card-title"> Titulo: ${val.titulo}</h4>`+
+                          `<p class="card-text"> Descripción: ${val.texto}</p>`+
+                          `<p class="card-text">Fecha de entrega: ${val.fechaEntrega}</p>`+
+                          `<button class="btn btn-primary" type="button" onclick="editAssignment('${val.idActividad}')">Editar</button>`+
+                          `<button class="btn btn-secondary" type="button" onclick="seeDeliveries('${val.idActividad}')">Ver entregas</button>`+
+                        `</div>`+
+                      `</div>`+
+                    `</div>`;
           })
           getterID("tbody").innerHTML=salida;
         }else{

@@ -1,3 +1,4 @@
+<?php require dirname(dirname(__FILE__)) . "/Util/verifyTeacher.php";?>
 <!DOCTYPE html>
 
 <html lang="es">
@@ -44,7 +45,7 @@
     <br>
     <h1 class="display-5">Crear / edita tarea</h1>
     <br>
-    <form class="form-floating" action="">
+    <form class="form-floating" id="formulario">
       <div class="container">
         <div class="row g-2">
           <div class="col-6">
@@ -69,6 +70,116 @@
       <div class="mb-3"></div>
       <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
+    <script src="js/jquery.min.js"></script>
+  <script src="js/generic.js"></script>
+  <script>
+
+    function findGetParameter(parameterName) {
+        var result = null,tmp = [];
+        location.search
+          .substr(1)
+          .split("&")
+          .forEach(function (item) {
+            tmp = item.split("=");
+            if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+          });
+        return result;
+    }
+    let idActividad=0;
+    initialize(()=>
+    {
+      idActividad=findGetParameter("idActividad");
+      if(idActividad!=0)
+      {
+        loadInfo();
+      }
+      getterID("formulario").onsubmit = function() {
+        return submit();
+      };
+    });
+    function updateUser()
+    {
+      const params={
+        idActividad,
+        nombre:getterID("txtNombre").value,
+        apPat:getterID("txtApPat").value,
+        apMat:getterID("txtApMat").value,
+        username:getterID("txtUsuario").value,
+        tipo:getterID("txtTipo").value,
+        password:getterID("txtPassword").value
+      };
+      makePost("API/Admin/updateUser.php",params,(data)=>
+      {
+        if(data.Estado=="ok")
+        {
+          alert("Usuario actualizado");
+          window.location.assign("Admin/usuarios.php");
+
+        }else{
+          alert(data.Descripcion);
+        }
+      },
+      err=>
+      {
+        console.error(err);
+      })
+    }
+    function uploadUser()
+    {
+      const params={
+        idActividad,
+        nombre:getterID("txtNombre").value,
+        apPat:getterID("txtApPat").value,
+        apMat:getterID("txtApMat").value,
+        username:getterID("txtUsuario").value,
+        tipo:getterID("txtTipo").value,
+        password:getterID("txtPassword").value
+      };
+      makePost("API/Admin/createUser.php",params,(data)=>
+      {
+        if(data.Estado=="ok")
+        {
+          alert("Usuario registrado");
+          window.location.assign("Admin/usuarios.php");
+        }else{
+          alert(data.Descripcion);
+        }
+      },
+      err=>
+      {
+        console.error(err);
+      })
+    }
+    function submit()
+    {
+      if(idActividad!=0)
+        updateUser();
+      else uploadUser();
+      return false;
+    }
+    function loadInfo()
+    {
+      const params={idActividad};
+      makePost("API/Profesor/showAssignment.php",params,(data)=>
+      {
+        if(data.Estado=="ok")
+        {
+          const tarea=data.Registro;
+          getterID("txtTitulo").value=tarea.titulo;
+          getterID("txtFechaEntrega").value=tarea.fechaEntrega;
+          getterID("txtPaginas").value=JSON.parse(tarea.paginas).join(",");
+          getterID("txtTexto").value=tarea.texto;
+        }else{
+          alert(data.Descripcion);
+        }
+      },
+      err=>
+      {
+        console.error(err);
+      })
+    }
+
+  </script>
   </div>
 
 

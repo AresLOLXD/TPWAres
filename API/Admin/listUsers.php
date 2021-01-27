@@ -15,11 +15,12 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 2) {
 
         $query = "SELECT idUsuario,nombre,username,apPat,apMat,tipo FROM usuario WHERE nombre LIKE '%$texto%' OR username LIKE '%$texto%' OR apPat LIKE '%$texto%' OR apMat LIKE '%$texto%' ORDER BY idUsuario ASC ";
         if ($result = $con->query($query)) {
+            $sal["Estado"] = "ok";
+            unset($sal["Descripcion"]);
+
             $sal["Registros"] = array();
             while ($row = $result->fetch_assoc()) {
-                $sal["Estado"] = "ok";
                 $sal["Registros"][] = $row;
-                unset($sal["Descripcion"]);
             }
 
             $result->free();

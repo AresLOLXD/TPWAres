@@ -13,13 +13,16 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 1) {
     } else {
         $texto = $con->real_escape_string($_POST["texto"]);
 
-        $query = "SELECT idActividad,titulo FROM actividad WHERE titulo LIKE '%$texto%' ORDER BY idActividad ASC ";
+        $query = "SELECT idActividad,titulo,fechaEntrega,paginas,texto FROM actividad WHERE titulo LIKE '%$texto%' ORDER BY idActividad ASC ";
         if ($result = $con->query($query)) {
             $sal["Registros"] = array();
+            $sal["Estado"] = "ok";
+            unset($sal["Descripcion"]);
+
             while ($row = $result->fetch_assoc()) {
                 $sal["Estado"] = "ok";
-                $sal["Registros"][] = $row;
                 unset($sal["Descripcion"]);
+                $sal["Registros"][] = $row;
             }
 
             $result->free();
