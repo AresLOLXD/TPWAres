@@ -5,7 +5,7 @@
 <head>
   <base href="/TPW/">
   <meta charset="UTF-8">
-  <title>Profe | Busca & lista</title>
+  <title>Profe | Crea y edita</title>
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <script src="./js/bootstrap.bundle.min.js"></script>
 </head>
@@ -34,12 +34,17 @@
   </nav>
   <br>
 
+  <!-- ******************************* -->
+  <!--      Para editar una tarea      -->
+  <!-- necesario el id de la actividad -->
+  <!-- ******************************* -->
+
   <div class="container shadow p-3 mb-5 bg-white rounded" >
     <!-- Registrar o editar tarea -->
     <br>
     <h1 class="display-5">Crear / edita tarea</h1>
     <br>
-    <form class="form-floating">
+    <form class="form-floating" action="">
       <div class="container">
         <div class="row g-2">
           <div class="col-6">

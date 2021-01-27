@@ -66,12 +66,12 @@
           <td></td>
           <td></td>
           <td></td>
-          <td>
           <!-- Llenar input con el ID de usuario -->
-          <form>
-            <input type="hidden" value="" action="">
-            <input type="submit" class="btn btn-primary" value="Editar" >
-          </form>
+          <td>
+            <form method="get" action="Admin/Usuario.php">
+              <input type="hidden" value="">
+              <input type="submit" class="btn btn-primary" value="Editar" >
+            </form>
           </td>
         </tr>
       </tbody>

@@ -39,7 +39,7 @@
     <br>
     <h1 class="display-5">Registra / edita usuario</h1>
     <br>
-    <form>
+    <form action="">
       <div class="container">
         <div class="row g-2">
           <div class="col-6">

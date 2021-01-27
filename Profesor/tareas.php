@@ -59,10 +59,13 @@
           <!-- Fecha de entrega de la tarea -->
           <p class="card-text">Fecha de entrega: </p>
             <!-- Llenar input con el ID de la tarea -->
-            <form action="">
+            <form action="Profesor/Tarea.php">
               <input type="hidden" value="">
-              <button id="editar" class="btn btn-primary">Editar</button>
-              <button id="entregas" class="btn btn-secondary">Ver entregas</button>
+              <input class="btn btn-primary" type="submit" value="Editar">
+            </form>
+            <form action="Profesor/Entregas.php">
+              <input type="hidden" value="">
+              <input class="btn btn-secondary" type="submit" value="Ver entregas">
             </form>
         </div>
       </div>
