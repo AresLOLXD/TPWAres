@@ -47,12 +47,12 @@
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th scope="col">ID</th>
           <th scope="col">Usuario</th>
           <th scope="col">Nombre</th>
           <th scope="col">Ap. Paterno</th>
           <th scope="col">Ap. Materno</th>
           <th scope="col">Tipo de usuario</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -62,7 +62,13 @@
           <td></td>
           <td></td>
           <td></td>
-          <td></td>
+          <td>
+          <!-- Llenar input con el ID de usuario -->
+          <form>
+            <input type="hidden" value="">
+            <input type="submit" class="btn btn-primary" value="Editar" >
+          </form>
+          </td>
         </tr>
       </tbody>
     </table>
