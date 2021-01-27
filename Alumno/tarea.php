@@ -57,10 +57,10 @@
   </div>
 
   <div class="container shadow p-3 mb-5 bg-white rounded">
-    <form class="row g-3" id="formulario">
+    <form class="row g-3" id="formulario" enctype="multipart/form-data" method="post">
       <div class="mb-3">
-        <label for="formFileMultiple" class="form-label">Selecciona el archivo a subir:</label>
-        <input class="form-control" type="file" id="formFileMultiple">
+        <label for="tarea" class="form-label">Selecciona el archivo a subir:</label>
+        <input class="form-control" type="file" name="tarea" id="tarea">
       </div>
       <input type="submit" class="btn btn-primary" value="Entregar">
     </form>
@@ -73,29 +73,22 @@
     initialize(()=>
     {
       idActividad=findGetParameter("idActividad");
-      if(idActividad!=0)
-      {
-        loadInfo();
-      }
+      loadInfo();
       getterID("formulario").onsubmit = function() {
         return submit();
       };
     });
     function uploadAssignment()
     {
-      const params={
-        idActividad,
-        titulo:getterID("txtTitulo").value,
-        fechaEntrega:getterID("txtFechaEntrega").value,
-        paginas:getterID("txtPaginas").value.split(","),
-        texto:getterID("txtTexto").value,
-      };
-      makePost("API/Profesor/uploadAssignment.php",params,(data)=>
+      const formData= new FormData(getterID("formulario"));
+      formData.append("idActividad",idActividad);
+
+      makePostFile("API/Alumno/uploadAssignment.php",formData,(data)=>
       {
         if(data.Estado=="ok")
         {
           alert("Tarea registrada");
-          window.location.assign("Admin/usuarios.php");
+          window.location.assign("Alumno/tareas.php");
         }else{
           alert(data.Descripcion);
         }
