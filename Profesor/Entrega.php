@@ -44,24 +44,89 @@
   <!-- Poner el título de la tarea -->
   <div class="container-md">
     <br>
-    <h1 class="display-4">Entrega de ""</h1>
+    <h1 class="display-4">Entrega de <span id="nombre1"></span></h1>
   </div>
 
   <!-- Muestra de la entrega de la actividad -->
   <!-- obetener URL de la BD -->
   <div class="container shadow p-3 mb-5 bg-white rounded">
-    <embed src="public/example.pdf" type="application/pdf" width="100%" height="600px" />
+    <embed id="embed" src="public/example.pdf" type="application/pdf" width="100%" height="600px" />
   </div>
 
   <div class="container shadow p-3 mb-5 bg-white rounded">
     <!-- Poner debajo el nombre del alumno que la antregó -->
-    <p>Trabajo de </p>
-    <form method="get" action="" class="input-group mb-3">
-      <input type="number" class="form-control" placeholder="Calificación de este trabajo" >
+    <p>Trabajo de <span id="nombre2"></span></p>
+    <form id="formulario" class="input-group mb-3">
+      <input min="0" max="1" step="1" type="number" class="form-control" id="calificacion" placeholder="Calificación de este trabajo" >
     <button class="btn btn-outline-secondary" type="button" id="asignaCalificacion">Guardar calificación</button>
     </form>
   </div>
+  <script src="js/generic.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script>
 
+    let idActividad=0,idUsuario=0;
+    initialize(()=>
+    {
+
+      getterID("formulario").onsubmit = function() {
+        return submit();
+      };
+      idActividad=findGetParameter("idActividad");
+      idUsuario=findGetParameter("idActividad");
+      load();
+    });
+    function submit()
+    {
+      const params={
+        idActividad,
+        idUsuario,
+        calificacion:getterID("calificacion").value
+      };
+      makePost("API/Profesor/rateDelivery.php",params,(data)=>
+      {
+        if(data.Estado=="ok")
+        {
+          alert("Tarea calificada");
+          window.location.assign("Profesor/entregas.php?idActividad="+idActividad);
+        }else{
+          alert(data.Descripcion);
+        }
+      },
+      err=>
+      {
+        console.error(err);
+      })
+      return false;
+    }
+    function load()
+    {
+      const params={idActividad,idUsuario};
+      makePost("API/Profesor/showDelivery.php",params,(data)=>
+      {
+        if(data.Estado=="ok")
+        {
+          const info=val.Registro;
+          getterID("nombre1").innerHTML=info.username
+          getterID("nombre2").innerHTML=info.username
+          getterID("calificacion").innerHTML=info.calificacion
+          var source="API/Profesor/showFileUploaded.php?idUsuario="+idUsuario+"&idActividad="+idActividad;
+          var embed=getterID("embed");
+          var clone=embed.cloneNode(true);
+          clone.setAttribute('src',source);
+          embed.parentNode.replaceChild(clone,embed)
+
+        }else{
+          alert(data.Descripcion);
+        }
+      },
+      err=>
+      {
+        console.error(err);
+      })
+      return false;
+    }
+  </script>
 </body>
 
 </html>

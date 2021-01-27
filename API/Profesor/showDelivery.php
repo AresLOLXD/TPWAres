@@ -12,14 +12,16 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 1) {
         $sal["Descripcion"] = "No se pudo conectar a la base de datos, contacte al administrador";
     } else {
         $idActividad = $con->real_escape_string($_POST["idActividad"]);
-        $query = "SELECT E.calificacion,E.fechaEntrega ,E.idArchivo,A.titulo,U.idUsuario,U.username  FROM entrega AS E INNER JOIN actividad AS A ON A.idActividad=E.idActividad INNER JOIN usuario AS U ON U.idUsuario=E.idUsuario  WHERE E.idActividad='$idActividad' ";
+        $idUsuario = $con->real_escape_string($_POST["idUsuario"]);
+        $query = "SELECT E.calificacion,E.idArchivo,U.username  FROM entrega AS E INNER JOIN usuario AS U ON U.idUsuario=E.idUsuario  WHERE E.idActividad='$idActividad' AND E.idUsuario='$idUsuario' ";
         if ($result = $con->query($query)) {
-            $sal["Registros"] = array();
-            $sal["Estado"] = "ok";
-            unset($sal["Descripcion"]);
+            if ($row = $result->fetch_assoc()) {
+                $sal["Registro"][] = $row;
+                $sal["Estado"] = "ok";
+                unset($sal["Descripcion"]);
+            } else {
+                $sal["Descripcion"] = "No se encontro el registro";
 
-            while ($row = $result->fetch_assoc()) {
-                $sal["Registros"][] = $row;
             }
 
             $result->free();
