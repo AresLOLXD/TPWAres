@@ -27,7 +27,7 @@
             <a class="nav-link active" aria-current="page" href="Profesor/Tareas.php">Lista de tareas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="Profesor/Tarea.php">Crear tarea</a>
+            <a class="nav-link" aria-current="page" onclick="editAssignment(0)">Crear tarea</a>
           </li>
         </ul>
       </div>
@@ -39,13 +39,17 @@
   <div class="container-md text-center">
     <br>
     <form class="d-flex shadow p-3 mb-5 bg-white rounded" id="searchForm">
-      <input id="search" class="form-control me-2" type="search" placeholder="Nombre de la tarea" aria-label="Search">
+      <input id="search" class="form-control me-2" type="search" placeholder="Nombre de la tarea a buscar" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Buscar tarea</button>
     </form>
   </div>
 
+  <!-- Crear nueva tarea -->
+  <div class="container shadow p-3 mb-5 bg-white rounded text-center">
+    <button class="btn btn-primary" type="button"  onclick="editAssignment(0)">Crear nueva tarea</button>
+  </div>
+
   <!-- Listado de tareas -->
-  <button class="btn btn-secondary" type="button"  onclick="editAssignment(0)">Crear nueva tarea</button>
   <div class="row row-cols-1 row-cols-md-3 g-4 shadow-none p-3 mb-5 bg-light rounded" id="tbody">
     <!-- Meter este div en loop -->
     <div class="col">

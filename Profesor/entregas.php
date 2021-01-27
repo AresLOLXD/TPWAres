@@ -27,7 +27,7 @@
             <a class="nav-link active" aria-current="page" href="Profesor/Tareas.php">Lista de tareas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="Profesor/Tarea.php">Crear tarea</a>
+            <a class="nav-link" aria-current="page" onclick="editAssignment(0)">Crear tarea</a>
           </li>
         </ul>
       </div>

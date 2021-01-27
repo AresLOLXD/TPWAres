@@ -27,7 +27,7 @@
             <a class="nav-link active" aria-current="page" href="Admin/Usuarios.php">Lista de usuarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="Admin/Usuario.php">Registrar usuario</a>
+            <a class="nav-link" aria-current="page" onclick="editUser(0)">Registrar usuario</a>
           </li>
         </ul>
       </div>
@@ -47,7 +47,6 @@
   <div class="container shadow p-3 mb-5 bg-white rounded">
     <br>
     <!-- Listado de usuarios -->
-    <button type="button" class="btn btn-primary" onclick="editUser(0)" >Crear nuevo usuario</button>
     <table class="table table-striped table-hover">
       <thead>
         <tr>
@@ -78,6 +77,11 @@
     </table>
 
   </div>
+
+  <div class="container shadow p-3 mb-5 bg-white rounded text-center">
+    <button type="button" class="btn btn-primary" onclick="editUser(0)" >Crear nuevo usuario</button>
+  </div>
+
   <script src="js/jquery.min.js"></script>
   <script src="js/generic.js"></script>
   <script>

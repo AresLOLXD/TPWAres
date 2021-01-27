@@ -23,7 +23,7 @@
         <br>
         <h1 class="display-3">Iniciar sesión:</h1>
         <br>
-        <input id="username" class="input form-control" type="text" placeholder="Usuario">
+        <input id="username" class="input form-control" autofocus type="text" placeholder="Usuario">
         <br>
         <input id="password" class="input form-control" type="password" placeholder="Password">
         <br>
