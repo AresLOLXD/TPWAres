@@ -13,10 +13,10 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 1) {
     } else {
         $idActividad = $con->real_escape_string($_POST["idActividad"]);
         $idUsuario = $con->real_escape_string($_POST["idUsuario"]);
-        $query = "SELECT E.calificacion,E.idArchivo,U.username  FROM entrega AS E INNER JOIN usuario AS U ON U.idUsuario=E.idUsuario  WHERE E.idActividad='$idActividad' AND E.idUsuario='$idUsuario' ";
+        $query = "SELECT E.calificacion,E.idArchivo,U.username  FROM entrega AS E INNER JOIN usuario AS U ON U.idUsuario=E.idUsuario  WHERE E.idUsuario='$idUsuario' AND E.idActividad='$idActividad'  ";
         if ($result = $con->query($query)) {
             if ($row = $result->fetch_assoc()) {
-                $sal["Registro"][] = $row;
+                $sal["Registro"] = $row;
                 $sal["Estado"] = "ok";
                 unset($sal["Descripcion"]);
             } else {

@@ -13,7 +13,7 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 0) {
     } else {
         $idUsuario = $con->real_escape_string($_SESSION["usuario"]["idUsuario"]);
 
-        $query = "SELECT A.idActividad,E.calificacion,AR.nombre FROM actividad AS A INNER JOIN entrega AS E ON E.idActividad=A.idActividad INNER JOIN archivo AS AR ON AR.idArchivo=E.idArchivo WHERE E.idUsuario='$idUsuario'  ORDER BY A.idActividad ASC ";
+        $query = "SELECT E.calificacion,AR.nombre,E.fechaEntrega FROM actividad AS A INNER JOIN entrega AS E ON E.idActividad=A.idActividad INNER JOIN archivo AS AR ON AR.idArchivo=E.idArchivo WHERE E.idUsuario='$idUsuario'  ORDER BY A.idActividad ASC ";
         if ($result = $con->query($query)) {
             $sal["Registros"] = array();
             $sal["Estado"] = "ok";

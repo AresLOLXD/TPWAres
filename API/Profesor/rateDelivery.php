@@ -5,7 +5,7 @@ $sal = array();
 $sal["Estado"] = "error";
 $sal["Descripcion"] = "Error desconocido";
 $con = getConnection();
-if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 0) {
+if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 1) {
     $sal["Descripcion"] = "Usuario no valido";
 } else {
     if ($con->connect_errno) {
@@ -13,9 +13,10 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 0) {
     } else {
         $idActividad = $con->real_escape_string($_POST["idActividad"]);
         $calificacion = $con->real_escape_string($_POST["calificacion"]);
-        $idUsuario = $con->real_escape_string($_SESSION["usuario"]["idUsuario"]);
+        $idUsuario = $con->real_escape_string($_POST["idUsuario"]);
 
         $query = "UPDATE entrega SET calificacion='$calificacion' WHERE idUsuario='$idUsuario' AND idActividad='$idActividad'";
+        error_log($query);
         if ($con->query($query) === true) {
             $sal["Estado"] = "ok";
             unset($sal["Descripcion"]);

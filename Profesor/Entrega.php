@@ -57,8 +57,8 @@
     <!-- Poner debajo el nombre del alumno que la antregó -->
     <p>Trabajo de <span id="nombre2"></span></p>
     <form id="formulario" class="input-group mb-3">
-      <input min="0" max="1" step="1" type="number" class="form-control" id="calificacion" placeholder="Calificación de este trabajo" >
-    <button class="btn btn-outline-secondary" type="button" id="asignaCalificacion">Guardar calificación</button>
+      <input min="0" max="10" step="0.01" type="number" class="form-control" id="calificacion" placeholder="Calificación de este trabajo" >
+    <button class="btn btn-outline-secondary" type="submit" id="asignaCalificacion">Guardar calificación</button>
     </form>
   </div>
   <script src="js/generic.js"></script>
@@ -73,7 +73,7 @@
         return submit();
       };
       idActividad=findGetParameter("idActividad");
-      idUsuario=findGetParameter("idActividad");
+      idUsuario=findGetParameter("idUsuario");
       load();
     });
     function submit()
@@ -106,11 +106,11 @@
       {
         if(data.Estado=="ok")
         {
-          const info=val.Registro;
+          const info=data.Registro;
           getterID("nombre1").innerHTML=info.username
           getterID("nombre2").innerHTML=info.username
-          getterID("calificacion").innerHTML=info.calificacion
-          var source="API/Profesor/showFileUploaded.php?idUsuario="+idUsuario+"&idActividad="+idActividad;
+          getterID("calificacion").value=info.calificacion
+          var source="API/Profesor/showFileUploaded.php?idArchivo="+info.idArchivo;
           var embed=getterID("embed");
           var clone=embed.cloneNode(true);
           clone.setAttribute('src',source);

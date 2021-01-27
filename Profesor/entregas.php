@@ -84,12 +84,12 @@
     let idActividad=0;
     initialize(()=>
     {
-      load();
       idActividad=findGetParameter("idActividad");
+      load();
     });
     function seeDelivery(usuario)
     {
-      window.location.assign("Profesor/entrega.php?idActividad="+id+"&idUsuario="+usuario)
+      window.location.assign("Profesor/entrega.php?idActividad="+idActividad+"&idUsuario="+usuario)
     }
     function load()
     {
@@ -107,7 +107,7 @@
                       `<td><a download href="API/Profesor/showFileUploaded.php?idArchivo=${val.idArchivo}">Descargar</a></td>`+
                       `<td>${val.calificacion?val.calificacion:"Sin calificar"}</td>`+
                       `<td>`+
-                        `<button type="button" class="btn btn-primary" onclick='seeDelivery('${val.idUsuario}')'>Calificar/Cambiar calificación</button>`+
+                        `<button type="button" class="btn btn-primary" onclick="seeDelivery('${val.idUsuario}')">Calificar/Cambiar calificación</button>`+
                       `</td>`+
                     `</tr>`;
             getterID("titulo").innerHTML=val.titulo
