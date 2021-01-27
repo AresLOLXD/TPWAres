@@ -23,10 +23,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="Admin/Usuarios.php"></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="Admin/Usuario.php">Registrar usuario</a>
+            <a class="nav-link active" aria-current="page" href="Alumno/Tareas.php">Lista de tareas</a>
           </li>
         </ul>
       </div>
@@ -61,7 +58,7 @@
           <!-- select * from actividad where             -->
           <td></td>
           <td></td>
-          <!-- Llenar input con el ID de entrega -->
+          <!-- Llenar input con el ID de la tarea -->
           <td>
             <form method="get" action="Alumno/Tarea.php">
               <input type="hidden" value="">
