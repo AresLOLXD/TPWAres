@@ -56,8 +56,8 @@
           </div>
           <div class="col-6"></div>
           <div class="form-floating">
-            <textarea class="form-control" placeholder="Descripción de la tarea" id="floatingTextarea2" style="height: 100px"></textarea>
-            <label for="floatingTextarea2">De que trata la tarea?</label>
+            <textarea class="form-control" placeholder="Descripción de la tarea" id="txtTexto" style="height: 100px"></textarea>
+            <label for="txtTexto">De que trata la tarea?</label>
           </div>
         </div>
       </div>
