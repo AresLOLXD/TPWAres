@@ -6,4 +6,4 @@ header('Pragma: no-cache');
 <META HTTP-EQUIV=REFRESH CONTENT="1; URL=/TPW/login.php">
 ¡Bienvenido a mi Proyecto!
 <br>
-Copyright (C) 2020 - Ares
+Copyright (C) 2020 - Ares - Ian
