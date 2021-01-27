@@ -63,9 +63,15 @@
 
 
 
+        <script src="js/generic.js"></script>
         <script src="js/jquery.min.js"></script>
-/script>
-ction login()
+        <script>
+
+            initialize(()=>
+            {
+                addListener("enviar",login)
+            })
+            function login()
             {
                 const params={
                     username:getterID("username").value,
@@ -92,7 +98,7 @@ ction login()
                             }
                         }else
                         {
-
+                            alert(data.Descripcion)
                         }
                     },
                     (err)=>
@@ -101,9 +107,6 @@ ction login()
                     }
                 );
             }
-
-
-
         </script>
     </body>
 </html>
