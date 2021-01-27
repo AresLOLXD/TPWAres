@@ -4,7 +4,7 @@
 
 <html lang="es">
     <head>
-        <base href="/TPWAres/">
+        <base href="/TPW/">
         <meta charset="UTF-8">
         <title>Inicio de sesión</title>
 
@@ -87,13 +87,13 @@
                             switch(data.tipo)
                             {
                                 case 0:
-                                    window.location.assign("Alumno/inicio.php");
+                                    window.location.assign("Alumno/tareas.php");
                                     break;
                                 case 1:
-                                    window.location.assign("Profesor/inicio.php");
+                                    window.location.assign("Profesor/tareas.php");
                                     break;
                                 case 2:
-                                    window.location.assign("Admin/inicio.php");
+                                    window.location.assign("Admin/usuarios.php");
                                     break;
                                 default:
                                     window.location.reload();

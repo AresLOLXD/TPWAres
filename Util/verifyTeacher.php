@@ -1,5 +1,5 @@
 <?php
 if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 1) {
-    header('Location: /TPWAres/login.php');
+    header('Location: /TPW/login.php');
     die();
 }

@@ -1,4 +1,4 @@
 <?php
 session_unset();
-header('Location: /TPWAres/login.php');
+header('Location: /TPW/login.php');
 die();

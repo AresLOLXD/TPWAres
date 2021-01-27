@@ -1,9 +1,9 @@
-<?php require dirname(dirname(__FILE__))."/Util/verifyAdmin.php";?>
+<?php require dirname(dirname(__FILE__)) . "/Util/verifyAdmin.php";?>
 <!DOCTYPE html>
 
 <html lang="es">
     <head>
-        <base href="/TPWAres/">
+        <base href="/TPW/">
         <meta charset="UTF-8">
         <title>Admin</title>
         <link rel="stylesheet" href="css/bulma.min.css">

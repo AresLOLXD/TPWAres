@@ -3,15 +3,15 @@
 if (isset($_SESSION["usuario"])) {
     switch ($_SESSION["usuario"]["tipo"]) {
         case 0:
-            header('Location: /TPWAres/Alumno/inicio.php');
+            header('Location: /TPW/Alumno/tareas.php');
             die();
             break;
         case 1:
-            header('Location: /TPWAres/Profesor/inicio.php');
+            header('Location: /TPW/Profesor/tareas.php');
             die();
             break;
         case 2:
-            header('Location: /TPWAres/Admin/inicio.php');
+            header('Location: /TPW/TPWAdmin/usuarios.php');
             die();
             break;
         default:
@@ -22,7 +22,7 @@ if (isset($_SESSION["usuario"])) {
             setcookie(session_name(), '', 0, '/');
             session_regenerate_id(true);
 
-            header('Location: /TPWAres/login.php');
+            header('Location: /TPW/login.php');
             die();
             break;
     }
