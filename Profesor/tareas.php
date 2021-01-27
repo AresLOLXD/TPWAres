@@ -36,7 +36,7 @@
   <br>
 
   <!-- Busqueda de tareas -->
-  <div class="container-md">
+  <div class="container-md text-center">
     <br>
     <form class="d-flex shadow p-3 mb-5 bg-white rounded" id="searchForm">
       <input id="search" class="form-control me-2" type="search" placeholder="Nombre de la tarea" aria-label="Search">
