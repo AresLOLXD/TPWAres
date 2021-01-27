@@ -11,7 +11,7 @@ if (isset($_SESSION["usuario"])) {
             die();
             break;
         case 2:
-            header('Location: /TPW/TPW/Admin/usuarios.php');
+            header('Location: /TPW/Admin/usuarios.php');
             die();
             break;
         default:
