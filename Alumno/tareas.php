@@ -52,7 +52,7 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tbody1">
         <tr>
           <!-- Llenar datos de actividad y meter en loop -->
           <!-- select * from actividad where             -->
@@ -60,12 +60,10 @@
           <td></td>
           <!-- Llenar input con el ID de la tarea -->
           <td>
-            <form method="get" action="Alumno/Tarea.php">
-              <input type="hidden" value="">
-              <input type="submit" class="btn btn-primary" value="Ver tarea">
-            </form>
+              <button type="button" class="btn btn-primary" >Ver tarea</button>
           </td>
         </tr>
+
       </tbody>
     </table>
   </div>
@@ -87,7 +85,7 @@
           <th scope="col">Calificacion</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tbody2">
         <tr>
           <!-- Llenar datos de entrega y meter en loop   -->
           <!-- select * from actividad where idActividad -->
@@ -98,7 +96,78 @@
       </tbody>
     </table>
   </div>
+  <script src="js/generic.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script>
 
+    initialize(()=>
+    {
+      loadDelivered();
+      loadNotDelivered();
+
+    });
+
+    function seeAssignment(id)
+    {
+      window.location.assign("Alumno/tarea.php?idActividad="+id)
+    }
+
+    function loadDelivered()
+    {
+      const params={};
+      makePost("API/Alumno/listDeliveredAssignments.php",params,(data)=>
+      {
+        if(data.Estado=="ok")
+        {
+          let salida="";
+          data.Registros.forEach(val=>
+          {
+            salida+=`<tr>`+
+                    `  <td>${val.fechaEntrega}</td>`+
+                    `  <td>${val.nombre}</td>`+
+                    `  <td>${val.calificacion?val.calificacion:"Sin calificar"}</td>`+
+                    `</tr>`;
+          })
+          getterID("tbody2").innerHTML=salida;
+        }else{
+          alert(data.Descripcion);
+        }
+      },
+      err=>
+      {
+        console.error(err);
+      })
+    }
+    function loadNotDelivered()
+    {
+      const params={};
+      makePost("API/Alumno/listNotDeliveredAssignments.php",params,(data)=>
+      {
+        if(data.Estado=="ok")
+        {
+          let salida="";
+          data.Registros.forEach(val=>
+          {
+            salida+=`<tr>`+
+                    `  <td>${val.titulo}</td>`+
+                    `  <td>${val.fechaEntrega}</td>`+
+                    `  <td>`+
+                    `      <button type="button" class="btn btn-primary" onclick="seeAssignment('${val.idActividad}')" >Ver tarea</button>`+
+                    `  </td>`+
+                    `</tr>`;
+          })
+          getterID("tbody1").innerHTML=salida;
+        }else{
+          alert(data.Descripcion);
+        }
+      },
+      err=>
+      {
+        console.error(err);
+      })
+
+    }
+  </script>
 </body>
 
 </html>

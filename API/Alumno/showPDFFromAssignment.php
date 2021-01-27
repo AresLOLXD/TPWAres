@@ -1,9 +1,9 @@
 <?php
-use setasign\Fpdi\Fpdi;
 require_once dirname(dirname(dirname(__FILE__))) . "/Util/Connection.php";
-require_once dirname(dirname(__FILE__)) . "/lib/FPDF/fpdf.php";
-require_once dirname(dirname(__FILE__)) . "/lib/FPDF/fpdf.php";
+require_once dirname(dirname(dirname(__FILE__))) . "/lib/FPDF/fpdf.php";
+require_once dirname(dirname(dirname(__FILE__))) . "/lib/FPDI/autoload.php";
 
+use setasign\Fpdi\Fpdi;
 $con = getConnection();
 if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 0) {
     header($_SERVER["SERVER_PROTOCOL"] . " 403 Forbidden", true, 403);
@@ -18,18 +18,15 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 0) {
         if ($result = $con->query($query)) {
             if ($row = $result->fetch_assoc()) {
                 $pdf = new Fpdi();
-                $pdf->setSourceFile(dirname(dirname(__FILE__)) . "/public/libro.pdf");
+                $pdf->setSourceFile(dirname(dirname(dirname(__FILE__))) . "/public/libro.pdf");
                 $paginas = json_decode($row["paginas"]);
                 foreach ($paginas as $pag) {
+                    $pdf->AddPage();
                     $templateId = $pdf->importPage($pag);
-                    $size = $pdf->getTemplateSize($templateId);
-                    if ($size['w'] > $size['h']) {
-                        $pdf->AddPage('L', array($size['w'], $size['h']));
-                    } else {
-                        $pdf->AddPage('P', array($size['w'], $size['h']));
-                    }
-                    $pdf->Output("I", "Actividad \"{$row['titulo']}\"");
+                    $pdf->useTemplate($templateId);
                 }
+                $pdf->Output("I", "Actividad \"{$row['titulo']}\"");
+
             } else {
                 header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found", true, 404);
                 echo "<h1>El usuario no tiene permisos para ver el archivo</h1>";

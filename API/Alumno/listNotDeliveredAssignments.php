@@ -11,10 +11,9 @@ if (!isset($_SESSION["usuario"]) || $_SESSION["usuario"]["tipo"] != 0) {
     if ($con->connect_errno) {
         $sal["Descripcion"] = "No se pudo conectar a la base de datos, contacte al administrador";
     } else {
-        $texto = $con->real_escape_string($_POST["texto"]);
         $idUsuario = $con->real_escape_string($_SESSION["usuario"]["idUsuario"]);
 
-        $query = "SELECT idActividad,titulo FROM actividad WHERE idActividad NOT IN (SELECT idActividad FROM entrega WHERE idUsuario='$idUsuario') ORDER BY idActividad ASC ";
+        $query = "SELECT idActividad,titulo,fechaEntrega FROM actividad WHERE idActividad NOT IN (SELECT idActividad FROM entrega WHERE idUsuario='$idUsuario') ORDER BY idActividad ASC ";
         if ($result = $con->query($query)) {
             $sal["Registros"] = array();
             while ($row = $result->fetch_assoc()) {

@@ -39,34 +39,100 @@
   <!-- Titulo de la tarea elegida -->
   <div class="container-md text-center">
     <br>
-    <h1 class="display-3">Tarea: ""</h1>
+    <h1 class="display-3">Tarea: <span id="titulo"></span></h1>
   </div>
 
   <!-- Descripción de la tarea elegida -->
   <div class="container shadow p-3 mb-5 bg-white rounded">
     <br>
-    <p class="card-text">Páginas: </p>
+    <p class="card-text">Páginas: <span id="paginas"></span></p>
     <br>
-    <p class="card-text">Descripción: </p>
+    <p class="card-text">Descripción: <span id="texto"></span></p>
     <br>
   </div>
 
   <!-- Poner en src la fuente de la actividad -->
   <div class="container shadow-lg p-3 mb-5 bg-white rounded ratio ratio-16x9">
-    <iframe src="" title="Tarea a entregar" allowfullscreen></iframe>
+    <iframe src="" id="iframe" title="Tarea a entregar" allowfullscreen></iframe>
   </div>
 
   <div class="container shadow p-3 mb-5 bg-white rounded">
-    <form class="row g-3">
+    <form class="row g-3" id="formulario">
       <div class="mb-3">
-        <label for="formFileMultiple" class="form-label">Selecciona los archivos a subir:</label>
-        <input class="form-control" type="file" id="formFileMultiple" multiple>
-        <div id="fileMultipleHelp" class="form-text">Puedes seleccionar varios archivos a la vez.</div>
+        <label for="formFileMultiple" class="form-label">Selecciona el archivo a subir:</label>
+        <input class="form-control" type="file" id="formFileMultiple">
       </div>
       <input type="submit" class="btn btn-primary" value="Entregar">
     </form>
   </div>
+<script src="js/jquery.min.js"></script>
+  <script src="js/generic.js"></script>
+  <script>
 
+    let idActividad=0;
+    initialize(()=>
+    {
+      idActividad=findGetParameter("idActividad");
+      if(idActividad!=0)
+      {
+        loadInfo();
+      }
+      getterID("formulario").onsubmit = function() {
+        return submit();
+      };
+    });
+    function uploadAssignment()
+    {
+      const params={
+        idActividad,
+        titulo:getterID("txtTitulo").value,
+        fechaEntrega:getterID("txtFechaEntrega").value,
+        paginas:getterID("txtPaginas").value.split(","),
+        texto:getterID("txtTexto").value,
+      };
+      makePost("API/Profesor/uploadAssignment.php",params,(data)=>
+      {
+        if(data.Estado=="ok")
+        {
+          alert("Tarea registrada");
+          window.location.assign("Admin/usuarios.php");
+        }else{
+          alert(data.Descripcion);
+        }
+      },
+      err=>
+      {
+        console.error(err);
+      })
+    }
+    function submit()
+    {
+      uploadAssignment();
+      return false;
+    }
+    function loadInfo()
+    {
+      const params={idActividad};
+      makePost("API/Alumno/showAssignment.php",params,(data)=>
+      {
+        if(data.Estado=="ok")
+        {
+          const tarea=data.Registro;
+          getterID("titulo").innerHTML=tarea.titulo;
+          getterID("paginas").innerHTML=JSON.parse(tarea.paginas).join(",");
+          getterID("texto").innerHTML=tarea.texto;
+          getterID("iframe").src="API/Alumno/showPDFFromAssignment.php?idActividad="+idActividad;
+        }else{
+          alert(data.Descripcion);
+        }
+      },
+      err=>
+      {
+        console.error(err);
+      })
+    }
+
+  </script>
 </body>
 
 </html>
