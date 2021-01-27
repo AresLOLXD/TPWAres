@@ -8,8 +8,6 @@
         <meta charset="UTF-8">
         <title>Inicio de sesión</title>
 
-        <link rel="stylesheet" href="css/bulma.min.css"> <!-- CSS de Bulma.io-->
-        <link rel="stylesheet" href="css/app.css"><!-- Css escrito propio-->
     </head>
     <body>
     <!--
@@ -65,16 +63,9 @@
 
 
 
-        <script src="js/fontawesome.js"></script>
-        <script src="js/jquery-3.5.1.min.js"></script>
-        <script src="js/generic.js"></script>
-        <script>
-
-            initialize(()=>
-            {
-                addListener("enviar",login)
-            })
-            function login()
+        <script src="js/jquery.min.js"></script>
+/script>
+ction login()
             {
                 const params={
                     username:getterID("username").value,
