@@ -27,7 +27,7 @@
         <br>
         <input id="password" class="input form-control" type="password" placeholder="Password">
         <br>
-        <button id="enviar" type="button" class="btn btn-dark">Dark</button>
+        <button id="enviar" type="button" class="btn btn-dark">Iniciar sesión</button>
     </div>
 
     <script src="js/generic.js"></script>
