@@ -31,8 +31,8 @@
       </div>
     </div>
   </nav>
-
-  <div class="container">
+  <br>
+  <div class="container shadow p-3 mb-5 bg-white rounded" >
     <!-- Registrar o editar usuario -->
     <br>
     <h1 class="display-5">Registra / edita usuario</h1>
@@ -42,7 +42,7 @@
         <div class="row g-2">
           <div class="col-6">
             <label for="txtNombre" class="form-label">Nombre:</label>
-            <input type="text" class="form-control" id="txtNombre">
+            <input type="text" class="form-control" id="txtNombre" autofocus>
           </div>
           <div class="col-6">
             <label for="txtApPat" class="form-label">Apellido Paterno:</label>
@@ -60,6 +60,14 @@
               <option value="1">Profe</option>
               <option value="2">Admin</option>
             </select>
+          </div>
+          <div class="col-6">
+            <label for="txtUsuario" class="form-label">Usuario:</label>
+            <input type="text" class="form-control" id="txtApPat">
+          </div>
+          <div class="col-6">
+            <label for="txtPassword" class="form-label">Contraseña:</label>
+            <input type="password" class="form-control" id="txtApPat">
           </div>
         </div>
       </div>

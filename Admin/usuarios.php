@@ -35,13 +35,13 @@
   <div class="container-md">
     <!-- Busqueda de usuarios -->
     <br>
-    <form class="d-flex">
+    <form class="d-flex shadow p-3 mb-5 bg-white rounded" >
       <input class="form-control me-2" type="search" placeholder="Nombre de usuario" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Buscar usuario</button>
     </form>
   </div>
 
-  <div class="container">
+  <div class="container shadow p-3 mb-5 bg-white rounded">
     <br>
     <!-- Listado de usuarios -->
     <table class="table table-striped table-hover">
@@ -57,6 +57,7 @@
       </thead>
       <tbody>
         <tr>
+          <!-- Llenar datos de usuario -->
           <td></td>
           <td></td>
           <td></td>
