@@ -16,7 +16,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Proyecto de TPW - - - Administrador</a>
-      <input type="button" class="btn btn-secondary" value="Cerrar sesión" onclick="window.location.assign('logout.php')">
+      <input type="button" class="btn btn-secondary" onclick="window.location.assign('logout.php')" value="Cerrar sesión">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -24,10 +24,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="Admin/Usuarios.php">Lista de usuarios</a>
+            <a class="nav-link" aria-current="page" href="Admin/Usuarios.php">Lista de usuarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="Admin/Usuario.php">Registrar usuario</a>
+            <a class="nav-link active" aria-current="page" onclick="editUser(0)">Registrar usuario</a>
           </li>
         </ul>
       </div>

@@ -47,15 +47,12 @@
                     if (data.Estado === "ok") {
                         switch (data.tipo) {
                             case 0:
-                                alert("Alumno")
                                 window.location.assign("Alumno/tareas.php");
                                 break;
                             case 1:
-                                alert("Prof")
                                 window.location.assign("Profesor/tareas.php");
                                 break;
                             case 2:
-                                alert("Admin")
                                 window.location.assign("Admin/usuarios.php");
                                 break;
                             default:

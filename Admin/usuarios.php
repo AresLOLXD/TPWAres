@@ -27,7 +27,7 @@
             <a class="nav-link active" aria-current="page" href="Admin/Usuarios.php">Lista de usuarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#" onclick="editUser(0)">Registrar usuario</a>
+            <a class="nav-link" aria-current="page" onclick="editUser(0)">Registrar usuario</a>
           </li>
         </ul>
       </div>
