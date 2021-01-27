@@ -37,7 +37,7 @@
   <!-- ******************************* -->
 
   <!-- Titulo de la tarea elegida -->
-  <div class="container-md">
+  <div class="container-md text-center">
     <br>
     <h1 class="display-3">Tarea: ""</h1>
   </div>
@@ -51,8 +51,9 @@
     <br>
   </div>
 
+  <!-- Poner en src la fuente de la actividad -->
   <div class="container shadow-lg p-3 mb-5 bg-white rounded ratio ratio-16x9">
-    <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" title="YouTube video" allowfullscreen></iframe>
+    <iframe src="" title="Tarea a entregar" allowfullscreen></iframe>
   </div>
 
   <div class="container shadow p-3 mb-5 bg-white rounded">
