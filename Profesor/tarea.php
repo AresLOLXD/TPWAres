@@ -101,18 +101,16 @@
     {
       const params={
         idActividad,
-        nombre:getterID("txtNombre").value,
-        apPat:getterID("txtApPat").value,
-        apMat:getterID("txtApMat").value,
-        username:getterID("txtUsuario").value,
-        tipo:getterID("txtTipo").value,
-        password:getterID("txtPassword").value
+        titulo:getterID("txtTitulo").value,
+        fechaEntrega:getterID("txtFechaEntrega").value,
+        paginas:getterID("txtPaginas").value.split(","),
+        texto:getterID("txtTexto").value,
       };
-      makePost("API/Admin/updateUser.php",params,(data)=>
+      makePost("API/Profesor/changeAssignment.php",params,(data)=>
       {
         if(data.Estado=="ok")
         {
-          alert("Usuario actualizado");
+          alert("Tarea actualizada");
           window.location.assign("Admin/usuarios.php");
 
         }else{
@@ -128,18 +126,16 @@
     {
       const params={
         idActividad,
-        nombre:getterID("txtNombre").value,
-        apPat:getterID("txtApPat").value,
-        apMat:getterID("txtApMat").value,
-        username:getterID("txtUsuario").value,
-        tipo:getterID("txtTipo").value,
-        password:getterID("txtPassword").value
+        titulo:getterID("txtTitulo").value,
+        fechaEntrega:getterID("txtFechaEntrega").value,
+        paginas:getterID("txtPaginas").value.split(","),
+        texto:getterID("txtTexto").value,
       };
-      makePost("API/Admin/createUser.php",params,(data)=>
+      makePost("API/Profesor/uploadAssignment.php",params,(data)=>
       {
         if(data.Estado=="ok")
         {
-          alert("Usuario registrado");
+          alert("Tarea registrada");
           window.location.assign("Admin/usuarios.php");
         }else{
           alert(data.Descripcion);
